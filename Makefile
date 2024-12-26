@@ -7,11 +7,11 @@ all: setup test_all
 
 setup:
 	./check_protoc_version.sh
-
-generate:
 	# Install dependent tools via modules
 	GO111MODULE=on GOBIN="$$PWD/bin" go install -v google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.1
 	GO111MODULE=on GOBIN="$$PWD/bin" go install -v github.com/kisielk/errcheck@v1.8.0
+
+generate:
 	# Recompile and install generator
 	GOBIN="$$PWD/bin" go install -v ./protoc-gen-twirp
 	# Generate code from go:generate comments
